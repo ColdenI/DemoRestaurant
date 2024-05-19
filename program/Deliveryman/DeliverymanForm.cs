@@ -10,19 +10,24 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TableObjects;
 
-namespace DemoRestaurant.Manager
+namespace DemoRestaurant
 {
-    public partial class ManagerPanelForm : Form
+    public partial class DeliverymanForm : Form
     {
-        public ManagerPanelForm()
+        public DeliverymanForm()
         {
             InitializeComponent();
-            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv.ReadOnly = true;
+        }
+
+        private void DeliverymanForm_Load(object sender, EventArgs e)
+        {
+            DrawTableOrders();
         }
 
         private void DrawTableOrders()
         {
+            //отображать только для этого курьера
+
             dgv.Rows.Clear();
             dgv.Columns.Clear();
             dgv.BringToFront();
@@ -36,8 +41,6 @@ namespace DemoRestaurant.Manager
             dgv.Columns.Add("customer_numberPhone", "Номер");
             dgv.Columns.Add("delivery_time", "Дата Время");
             dgv.Columns.Add("dishes", "Блюда");
-            dgv.Columns.Add("dishes_personnel", "Повар");
-            dgv.Columns.Add("delivery_personnel", "Доставщик");
             dgv.Columns.Add("status", "Статус");
 
             using (var conn = new MySqlConnection(Program.SQLBuilder.ConnectionString))
@@ -48,7 +51,7 @@ namespace DemoRestaurant.Manager
                 using (var query = conn.CreateCommand())
                 {
                     query.CommandTimeout = 30;
-                    query.CommandText = "SELECT * FROM `order`";
+                    query.CommandText = "SELECT * FROM `order` WHERE `status` <> 'Доставлен'";
 
                     using (var reader = query.ExecuteReader())
                     {
@@ -62,7 +65,11 @@ namespace DemoRestaurant.Manager
                                 Dishes[] dishes = Dishes.GetDishesByOrderID(reader.GetInt32(0));
                                 if (customer == null) continue;
                                 if (delivery == null) continue;
-                                foreach(Dishes i in dishes) if(i == null) continue;         
+                                foreach (Dishes i in dishes) if (i == null) continue;
+                                
+                                Personnel personnel = Personnel.GetPersonnelByID(delivery.personnel_id);
+                                if(personnel.id != ThisUser.ID) continue;
+                                if(delivery.datetime > DateTime.Now.AddHours(1)) continue;
 
                                 dgv.Rows.Add();
                                 dgv.Rows[counter].Cells[0].Value = reader.GetInt32(0);
@@ -78,11 +85,7 @@ namespace DemoRestaurant.Manager
                                     if (i != dishes.Length - 1) dishes_str += ", ";
                                 }
                                 dgv.Rows[counter].Cells[6].Value = dishes_str;
-                                Personnel personnel = Personnel.GetPersonnelByID(dishes[0].personnel_id);
-                                dgv.Rows[counter].Cells[7].Value = $"{personnel.fname} {personnel.lname} {personnel.patronymic}";
-                                personnel = Personnel.GetPersonnelByID(delivery.personnel_id);
-                                dgv.Rows[counter].Cells[8].Value = $"{personnel.fname} {personnel.lname} {personnel.patronymic}";
-                                dgv.Rows[counter].Cells[9].Value = reader.GetString(3);
+                                dgv.Rows[counter].Cells[7].Value = reader.GetString(3);
 
 
                                 counter++;
@@ -97,39 +100,10 @@ namespace DemoRestaurant.Manager
             }
         }
 
-        private void toolStripButton_update_Click(object sender, EventArgs e) => DrawTableOrders();
+        private void toolStripButton_UpdateTable_Click(object sender, EventArgs e) => DrawTableOrders();
 
-        private void ManagerPanelForm_Load(object sender, EventArgs e)
+        private void toolStripButton_setStatus_Click(object sender, EventArgs e)
         {
-            DrawTableOrders();
-        }
-
-        private void toolStripButton_add_Click(object sender, EventArgs e)
-        {
-            new AddNewOrderForm().ShowDialog();
-            DrawTableOrders();
-        }
-
-        private void toolStripButton_removeOrder_Click(object sender, EventArgs e)
-        {
-            RemoveOrder((int)dgv.CurrentCell.OwningRow.Cells[0].Value, true);
-            DrawTableOrders();
-        }
-
-        public static void RemoveOrder(int order_id, bool ReturnIngredients = true)
-        {
-            List<int> ingredientsId = new List<int>();
-            if (ReturnIngredients)
-            {
-                foreach (Dishes i in Dishes.GetDishesByOrderID(order_id))
-                {
-                    foreach (Ingredient j in Recipe.GetRecipeByID(i.recipe_id).ingredients)
-                    {
-                        ingredientsId.Add(j.id);
-                    }
-                }
-            }
-
             using (var conn = new MySqlConnection(Program.SQLBuilder.ConnectionString))
             {
                 try { conn.Open(); }
@@ -137,32 +111,31 @@ namespace DemoRestaurant.Manager
                 using (var query = conn.CreateCommand())
                 {
                     query.CommandTimeout = 30;
-                    query.Parameters.AddWithValue("@order_id", order_id);
-
-                    if (ReturnIngredients)
-                    {
-                        foreach(int i in ingredientsId)
-                        {
-                            query.CommandText = $"UPDATE `ingredients` SET `count` = `count` + 1 WHERE `id` = '{i}';";
-                            query.ExecuteNonQuery();
-                        }
-                    }
-                    
-                    query.CommandText = "DELETE FROM `delivery` WHERE `order_id` = @order_id;";
-                    query.ExecuteNonQuery();
-
-                    query.CommandText = "DELETE FROM `dishes` WHERE `order_id` = @order_id;";
-                    query.ExecuteNonQuery();
-
-                    int customerId = Customer.GetCustomerByOrderID(order_id).id;
-
-                    query.CommandText = "DELETE FROM `order` WHERE `id` = @order_id;";
-                    query.ExecuteNonQuery();
-
-                    query.CommandText = $"DELETE FROM `customer` WHERE `id` = '{customerId}';";
+                    query.CommandText = "UPDATE `order` SET `status` = @status WHERE `id`=@id;";
+                    query.Parameters.AddWithValue("@status", "Доставлен");
+                    query.Parameters.AddWithValue("@id", (int)dgv.CurrentCell.OwningRow.Cells[0].Value);
                     query.ExecuteNonQuery();
                 }
             }
+            DrawTableOrders();
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            using (var conn = new MySqlConnection(Program.SQLBuilder.ConnectionString))
+            {
+                try { conn.Open(); }
+                catch { MessageBox.Show("MySQL server disconnect"); }
+                using (var query = conn.CreateCommand())
+                {
+                    query.CommandTimeout = 30;
+                    query.CommandText = "UPDATE `order` SET `status` = @status WHERE `id`=@id AND `status` <> 'Доставлен';";
+                    query.Parameters.AddWithValue("@status", "В пути");
+                    query.Parameters.AddWithValue("@id", (int)dgv.CurrentCell.OwningRow.Cells[0].Value);
+                    query.ExecuteNonQuery();
+                }
+            }
+            DrawTableOrders();
         }
     }
 }

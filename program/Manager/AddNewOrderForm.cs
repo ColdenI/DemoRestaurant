@@ -238,8 +238,9 @@ namespace DemoRestaurant.Manager
                     query.Parameters.AddWithValue("@number_phone", textBox_numberPhone.Text);
                     query.ExecuteNonQuery();
 
-                    query.CommandText = "INSERT INTO `order` (`notes`, `customer_id`) VALUES (@notes, @customer_id);";
+                    query.CommandText = "INSERT INTO `order` (`notes`, `customer_id`, `status`) VALUES (@notes, @customer_id, @status);";
                     query.Parameters.AddWithValue("@notes", textBox_notes.Text);
+                    query.Parameters.AddWithValue("@status", "Создан");
                     query.Parameters.AddWithValue("@customer_id", GetID("customer"));
                     query.ExecuteNonQuery();
 

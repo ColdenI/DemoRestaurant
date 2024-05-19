@@ -35,5 +35,12 @@ namespace DemoRestaurant.Admin
         {
             label2.Text = $"{ThisUser.LastName} {ThisUser.FirstName} {ThisUser.Patronymic}";
         }
+
+        private void button_Posts_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            new PostsForm().ShowDialog();
+            this.Visible = true;
+        }
     }
 }

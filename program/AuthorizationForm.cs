@@ -1,4 +1,5 @@
 ﻿using DemoRestaurant.Admin;
+using DemoRestaurant.Cook;
 using DemoRestaurant.Manager;
 using MySql.Data.MySqlClient;
 using System;
@@ -105,6 +106,8 @@ namespace DemoRestaurant
                             {
                                 case ThisUser.Positions.Admin: new AdminPanelForm().ShowDialog(); break;
                                 case ThisUser.Positions.Manager: new ManagerPanelForm().ShowDialog(); break;
+                                case ThisUser.Positions.Cook: new CookPenelForm().ShowDialog(); break;
+                                case ThisUser.Positions.Deliveryman: new DeliverymanForm().ShowDialog(); break;
 
                             }
                             this.Visible = true;

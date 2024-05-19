@@ -45,3 +45,8 @@ D:\Мои работы\C# - Project\DemoRestaurant\DemoRestaurant\program\obj\De
 D:\Мои работы\C# - Project\DemoRestaurant\DemoRestaurant\program\obj\Debug\DemoRestaurant.Manager.AddNewOrderForm.resources
 D:\Мои работы\C# - Project\DemoRestaurant\DemoRestaurant\program\obj\Debug\DemoRestaurant.Admin.AdminPanelForm.resources
 D:\Мои работы\C# - Project\DemoRestaurant\DemoRestaurant\program\obj\Debug\DemoRestaurant.PersonnelPanel.resources
+D:\Мои работы\C# - Project\DemoRestaurant\DemoRestaurant\program\obj\Debug\DemoRestaurant.Admin.PostsForm.resources
+D:\Мои работы\C# - Project\DemoRestaurant\DemoRestaurant\program\obj\Debug\DemoRestaurant.Cook.CookOrderForm.resources
+D:\Мои работы\C# - Project\DemoRestaurant\DemoRestaurant\program\obj\Debug\DemoRestaurant.Cook.CookPenelForm.resources
+D:\Мои работы\C# - Project\DemoRestaurant\DemoRestaurant\program\obj\Debug\DemoRestaurant.Cook.CookRecipesPanelForm.resources
+D:\Мои работы\C# - Project\DemoRestaurant\DemoRestaurant\program\obj\Debug\DemoRestaurant.DeliverymanForm.resources

@@ -104,6 +104,12 @@
     <Compile Include="Admin\AdminPanelForm.Designer.cs">
       <DependentUpon>AdminPanelForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\PostsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\PostsForm.Designer.cs">
+      <DependentUpon>PostsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ShiftsPanelForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +134,30 @@
     <Compile Include="Admin\ManagementUser.Designer.cs">
       <DependentUpon>ManagementUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Cook\CookOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cook\CookOrderForm.Designer.cs">
+      <DependentUpon>CookOrderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cook\CookPenelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cook\CookPenelForm.Designer.cs">
+      <DependentUpon>CookPenelForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cook\CookRecipesPanelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cook\CookRecipesPanelForm.Designer.cs">
+      <DependentUpon>CookRecipesPanelForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Deliveryman\DeliverymanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Deliveryman\DeliverymanForm.Designer.cs">
+      <DependentUpon>DeliverymanForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Manager\AddNewOrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +177,9 @@
     <EmbeddedResource Include="Admin\AdminPanelForm.resx">
       <DependentUpon>AdminPanelForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Admin\PostsForm.resx">
+      <DependentUpon>PostsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AuthorizationForm.resx">
       <DependentUpon>AuthorizationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -155,6 +188,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\ManagementUser.resx">
       <DependentUpon>ManagementUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cook\CookOrderForm.resx">
+      <DependentUpon>CookOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cook\CookPenelForm.resx">
+      <DependentUpon>CookPenelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cook\CookRecipesPanelForm.resx">
+      <DependentUpon>CookRecipesPanelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Deliveryman\DeliverymanForm.resx">
+      <DependentUpon>DeliverymanForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Manager\AddNewOrderForm.resx">
       <DependentUpon>AddNewOrderForm.cs</DependentUpon>
