@@ -1,4 +1,5 @@
-﻿using DemoRestaurant.Manager;
+﻿using DemoRestaurant.Admin;
+using DemoRestaurant.Manager;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,17 @@ namespace DemoRestaurant
         public AuthorizationForm()
         {
             InitializeComponent();
+            LoadRemembreUser();
+        }
+
+        private void LoadRemembreUser()
+        {
+            if (Properties.Settings.Default.rememberUser)
+            {
+                textBox_login.Text = Properties.Settings.Default.remember_login;
+                textBox_password.Text = Properties.Settings.Default.remember_password;
+                checkBox_remember.Checked = Properties.Settings.Default.rememberUser;
+            }
         }
 
         private void button_log_in_Click(object sender, EventArgs e)
@@ -55,6 +67,22 @@ namespace DemoRestaurant
                     {
                         while (reader.Read())
                         {
+                            #region remember user
+                            if (checkBox_remember.Checked)
+                            {
+                                Properties.Settings.Default.rememberUser = true;
+                                Properties.Settings.Default.remember_login = textBox_login.Text;
+                                Properties.Settings.Default.remember_password = textBox_password.Text;
+                            }
+                            else
+                            {
+                                Properties.Settings.Default.rememberUser = false;
+                                Properties.Settings.Default.remember_login = string.Empty;
+                                Properties.Settings.Default.remember_password = string.Empty;
+                            }
+                            Properties.Settings.Default.Save();
+                            #endregion
+
                             ThisUser.ID = reader.GetInt32(0);
                             ThisUser.LastName = reader.GetString(1);
                             ThisUser.FirstName = reader.GetString(2);
@@ -63,10 +91,15 @@ namespace DemoRestaurant
                             ThisUser.Age = reader.GetInt32(5);
                             ThisUser.Post = (ThisUser.Positions)reader.GetInt32(6);
 
+                            if(reader.GetDateTime(8).Year != 1900)
+                            {
+                                MessageBox.Show("Вы уволены...");
+                                return;
+                            }
+
                             this.Visible = false;
                             textBox_login.Text = string.Empty;
                             textBox_password.Text = string.Empty;
-                            TableObjects.Positions.Load();
 
                             switch (ThisUser.Post)
                             {
@@ -75,6 +108,7 @@ namespace DemoRestaurant
 
                             }
                             this.Visible = true;
+                            LoadRemembreUser();
                             return;
                         }
                     }

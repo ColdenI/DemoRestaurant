@@ -33,6 +33,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton_add = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_update = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_removeOrder = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -55,6 +56,7 @@
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton_add,
+            this.toolStripButton_removeOrder,
             this.toolStripButton_update});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -82,6 +84,16 @@
             this.toolStripButton_update.Text = "Обновить";
             this.toolStripButton_update.Click += new System.EventHandler(this.toolStripButton_update_Click);
             // 
+            // toolStripButton_removeOrder
+            // 
+            this.toolStripButton_removeOrder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton_removeOrder.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_removeOrder.Image")));
+            this.toolStripButton_removeOrder.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_removeOrder.Name = "toolStripButton_removeOrder";
+            this.toolStripButton_removeOrder.Size = new System.Drawing.Size(69, 24);
+            this.toolStripButton_removeOrder.Text = "Удалить";
+            this.toolStripButton_removeOrder.Click += new System.EventHandler(this.toolStripButton_removeOrder_Click);
+            // 
             // ManagerPanelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -106,5 +118,6 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton_add;
         private System.Windows.Forms.ToolStripButton toolStripButton_update;
+        private System.Windows.Forms.ToolStripButton toolStripButton_removeOrder;
     }
 }

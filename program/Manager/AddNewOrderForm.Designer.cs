@@ -29,7 +29,10 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox_numberPhone = new System.Windows.Forms.TextBox();
+            this.textBox_addres = new System.Windows.Forms.TextBox();
+            this.textBox_patronymic = new System.Windows.Forms.TextBox();
+            this.textBox_lname = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -37,24 +40,21 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.textBox_fname = new System.Windows.Forms.TextBox();
+            this.textBox_notes = new System.Windows.Forms.TextBox();
+            this.dateTimePicker_datetime = new System.Windows.Forms.DateTimePicker();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listBox_order = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.listBox_allDishes = new System.Windows.Forms.ListBox();
+            this.domainUpDown_dishesType = new System.Windows.Forms.DomainUpDown();
             this.button_removDishes = new System.Windows.Forms.Button();
             this.button_addDishes = new System.Windows.Forms.Button();
-            this.button_addOrder = new System.Windows.Forms.Button();
-            this.textBox_fname = new System.Windows.Forms.TextBox();
-            this.textBox_lname = new System.Windows.Forms.TextBox();
-            this.textBox_patronymic = new System.Windows.Forms.TextBox();
-            this.textBox_addres = new System.Windows.Forms.TextBox();
-            this.textBox_notes = new System.Windows.Forms.TextBox();
-            this.textBox_numberPhone = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.dateTimePicker_datetime = new System.Windows.Forms.DateTimePicker();
-            this.domainUpDown_dishesType = new System.Windows.Forms.DomainUpDown();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.button_addOrder = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -95,15 +95,41 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(400, 265);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // groupBox1
+            // textBox_numberPhone
             // 
-            this.groupBox1.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(406, 286);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Заказчик";
+            this.textBox_numberPhone.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_numberPhone.Location = new System.Drawing.Point(143, 138);
+            this.textBox_numberPhone.MaxLength = 45;
+            this.textBox_numberPhone.Name = "textBox_numberPhone";
+            this.textBox_numberPhone.Size = new System.Drawing.Size(254, 22);
+            this.textBox_numberPhone.TabIndex = 13;
+            // 
+            // textBox_addres
+            // 
+            this.textBox_addres.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_addres.Location = new System.Drawing.Point(143, 84);
+            this.textBox_addres.MaxLength = 100;
+            this.textBox_addres.Name = "textBox_addres";
+            this.textBox_addres.Size = new System.Drawing.Size(254, 22);
+            this.textBox_addres.TabIndex = 12;
+            // 
+            // textBox_patronymic
+            // 
+            this.textBox_patronymic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_patronymic.Location = new System.Drawing.Point(143, 57);
+            this.textBox_patronymic.MaxLength = 45;
+            this.textBox_patronymic.Name = "textBox_patronymic";
+            this.textBox_patronymic.Size = new System.Drawing.Size(254, 22);
+            this.textBox_patronymic.TabIndex = 11;
+            // 
+            // textBox_lname
+            // 
+            this.textBox_lname.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_lname.Location = new System.Drawing.Point(143, 30);
+            this.textBox_lname.MaxLength = 45;
+            this.textBox_lname.Name = "textBox_lname";
+            this.textBox_lname.Size = new System.Drawing.Size(254, 22);
+            this.textBox_lname.TabIndex = 10;
             // 
             // label1
             // 
@@ -175,6 +201,42 @@
             this.label7.Text = "Имя";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // textBox_fname
+            // 
+            this.textBox_fname.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_fname.Location = new System.Drawing.Point(143, 3);
+            this.textBox_fname.MaxLength = 45;
+            this.textBox_fname.Name = "textBox_fname";
+            this.textBox_fname.Size = new System.Drawing.Size(254, 22);
+            this.textBox_fname.TabIndex = 9;
+            // 
+            // textBox_notes
+            // 
+            this.textBox_notes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox_notes.Location = new System.Drawing.Point(143, 165);
+            this.textBox_notes.MaxLength = 250;
+            this.textBox_notes.Multiline = true;
+            this.textBox_notes.Name = "textBox_notes";
+            this.textBox_notes.Size = new System.Drawing.Size(254, 97);
+            this.textBox_notes.TabIndex = 14;
+            // 
+            // dateTimePicker_datetime
+            // 
+            this.dateTimePicker_datetime.Location = new System.Drawing.Point(143, 111);
+            this.dateTimePicker_datetime.Name = "dateTimePicker_datetime";
+            this.dateTimePicker_datetime.Size = new System.Drawing.Size(254, 22);
+            this.dateTimePicker_datetime.TabIndex = 15;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tableLayoutPanel1);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(406, 286);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Заказчик";
+            // 
             // listBox_order
             // 
             this.listBox_order.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -195,6 +257,37 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Заказ";
             // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.panel1, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.button_removDishes, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.button_addDishes, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.listBox_order, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.label8, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label9, 1, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 18);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(358, 265);
+            this.tableLayoutPanel2.TabIndex = 13;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.listBox_allDishes);
+            this.panel1.Controls.Add(this.domainUpDown_dishesType);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(182, 23);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(173, 209);
+            this.panel1.TabIndex = 14;
+            // 
             // listBox_allDishes
             // 
             this.listBox_allDishes.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -204,6 +297,16 @@
             this.listBox_allDishes.Name = "listBox_allDishes";
             this.listBox_allDishes.Size = new System.Drawing.Size(173, 187);
             this.listBox_allDishes.TabIndex = 11;
+            this.listBox_allDishes.DoubleClick += new System.EventHandler(this.listBox_allDishes_DoubleClick);
+            // 
+            // domainUpDown_dishesType
+            // 
+            this.domainUpDown_dishesType.Dock = System.Windows.Forms.DockStyle.Top;
+            this.domainUpDown_dishesType.Location = new System.Drawing.Point(0, 0);
+            this.domainUpDown_dishesType.Name = "domainUpDown_dishesType";
+            this.domainUpDown_dishesType.Size = new System.Drawing.Size(173, 22);
+            this.domainUpDown_dishesType.TabIndex = 13;
+            this.domainUpDown_dishesType.SelectedItemChanged += new System.EventHandler(this.domainUpDown_dishesType_SelectedItemChanged);
             // 
             // button_removDishes
             // 
@@ -227,92 +330,6 @@
             this.button_addDishes.UseVisualStyleBackColor = true;
             this.button_addDishes.Click += new System.EventHandler(this.button_addDishes_Click);
             // 
-            // button_addOrder
-            // 
-            this.button_addOrder.Location = new System.Drawing.Point(683, 304);
-            this.button_addOrder.Name = "button_addOrder";
-            this.button_addOrder.Size = new System.Drawing.Size(105, 44);
-            this.button_addOrder.TabIndex = 12;
-            this.button_addOrder.Text = "Добавить";
-            this.button_addOrder.UseVisualStyleBackColor = true;
-            this.button_addOrder.Click += new System.EventHandler(this.button_addOrder_Click);
-            // 
-            // textBox_fname
-            // 
-            this.textBox_fname.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox_fname.Location = new System.Drawing.Point(143, 3);
-            this.textBox_fname.MaxLength = 45;
-            this.textBox_fname.Name = "textBox_fname";
-            this.textBox_fname.Size = new System.Drawing.Size(254, 22);
-            this.textBox_fname.TabIndex = 9;
-            // 
-            // textBox_lname
-            // 
-            this.textBox_lname.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox_lname.Location = new System.Drawing.Point(143, 30);
-            this.textBox_lname.MaxLength = 45;
-            this.textBox_lname.Name = "textBox_lname";
-            this.textBox_lname.Size = new System.Drawing.Size(254, 22);
-            this.textBox_lname.TabIndex = 10;
-            // 
-            // textBox_patronymic
-            // 
-            this.textBox_patronymic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox_patronymic.Location = new System.Drawing.Point(143, 57);
-            this.textBox_patronymic.MaxLength = 45;
-            this.textBox_patronymic.Name = "textBox_patronymic";
-            this.textBox_patronymic.Size = new System.Drawing.Size(254, 22);
-            this.textBox_patronymic.TabIndex = 11;
-            // 
-            // textBox_addres
-            // 
-            this.textBox_addres.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox_addres.Location = new System.Drawing.Point(143, 84);
-            this.textBox_addres.MaxLength = 100;
-            this.textBox_addres.Name = "textBox_addres";
-            this.textBox_addres.Size = new System.Drawing.Size(254, 22);
-            this.textBox_addres.TabIndex = 12;
-            // 
-            // textBox_notes
-            // 
-            this.textBox_notes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox_notes.Location = new System.Drawing.Point(143, 165);
-            this.textBox_notes.MaxLength = 250;
-            this.textBox_notes.Multiline = true;
-            this.textBox_notes.Name = "textBox_notes";
-            this.textBox_notes.Size = new System.Drawing.Size(254, 97);
-            this.textBox_notes.TabIndex = 13;
-            // 
-            // textBox_numberPhone
-            // 
-            this.textBox_numberPhone.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox_numberPhone.Location = new System.Drawing.Point(143, 138);
-            this.textBox_numberPhone.MaxLength = 45;
-            this.textBox_numberPhone.Name = "textBox_numberPhone";
-            this.textBox_numberPhone.Size = new System.Drawing.Size(254, 22);
-            this.textBox_numberPhone.TabIndex = 14;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.panel1, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.button_removDishes, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.button_addDishes, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.listBox_order, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.label8, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label9, 1, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 18);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 3;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(358, 265);
-            this.tableLayoutPanel2.TabIndex = 13;
-            // 
             // label8
             // 
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -333,31 +350,15 @@
             this.label9.Text = "Все блюда";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // dateTimePicker_datetime
+            // button_addOrder
             // 
-            this.dateTimePicker_datetime.Location = new System.Drawing.Point(143, 111);
-            this.dateTimePicker_datetime.Name = "dateTimePicker_datetime";
-            this.dateTimePicker_datetime.Size = new System.Drawing.Size(254, 22);
-            this.dateTimePicker_datetime.TabIndex = 15;
-            // 
-            // domainUpDown_dishesType
-            // 
-            this.domainUpDown_dishesType.Dock = System.Windows.Forms.DockStyle.Top;
-            this.domainUpDown_dishesType.Location = new System.Drawing.Point(0, 0);
-            this.domainUpDown_dishesType.Name = "domainUpDown_dishesType";
-            this.domainUpDown_dishesType.Size = new System.Drawing.Size(173, 22);
-            this.domainUpDown_dishesType.TabIndex = 13;
-            this.domainUpDown_dishesType.SelectedItemChanged += new System.EventHandler(this.domainUpDown_dishesType_SelectedItemChanged);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.listBox_allDishes);
-            this.panel1.Controls.Add(this.domainUpDown_dishesType);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(182, 23);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(173, 209);
-            this.panel1.TabIndex = 14;
+            this.button_addOrder.Location = new System.Drawing.Point(683, 304);
+            this.button_addOrder.Name = "button_addOrder";
+            this.button_addOrder.Size = new System.Drawing.Size(105, 44);
+            this.button_addOrder.TabIndex = 12;
+            this.button_addOrder.Text = "Добавить";
+            this.button_addOrder.UseVisualStyleBackColor = true;
+            this.button_addOrder.Click += new System.EventHandler(this.button_addOrder_Click);
             // 
             // AddNewOrderForm
             // 

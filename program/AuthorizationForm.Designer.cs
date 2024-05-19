@@ -33,6 +33,7 @@
             this.textBox_password = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.checkBox_remember = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // button_log_in
@@ -86,11 +87,23 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Пароль";
             // 
+            // checkBox_remember
+            // 
+            this.checkBox_remember.AutoSize = true;
+            this.checkBox_remember.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBox_remember.Location = new System.Drawing.Point(18, 150);
+            this.checkBox_remember.Name = "checkBox_remember";
+            this.checkBox_remember.Size = new System.Drawing.Size(110, 24);
+            this.checkBox_remember.TabIndex = 5;
+            this.checkBox_remember.Text = "Запомнить";
+            this.checkBox_remember.UseVisualStyleBackColor = true;
+            // 
             // AuthorizationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(389, 193);
+            this.Controls.Add(this.checkBox_remember);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox_password);
@@ -112,6 +125,7 @@
         private System.Windows.Forms.TextBox textBox_password;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox checkBox_remember;
     }
 }
 

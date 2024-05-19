@@ -41,6 +41,7 @@ D:\Мои работы\C# - Project\DemoRestaurant\DemoRestaurant\program\obj\De
 D:\Мои работы\C# - Project\DemoRestaurant\DemoRestaurant\program\obj\Debug\DemoRestaurant.exe
 D:\Мои работы\C# - Project\DemoRestaurant\DemoRestaurant\program\obj\Debug\DemoRestaurant.pdb
 D:\Мои работы\C# - Project\DemoRestaurant\DemoRestaurant\program\obj\Debug\DemoRestaurant.ManagementUser.resources
-D:\Мои работы\C# - Project\DemoRestaurant\DemoRestaurant\program\obj\Debug\DemoRestaurant.AdminPanelForm.resources
 D:\Мои работы\C# - Project\DemoRestaurant\DemoRestaurant\program\obj\Debug\DemoRestaurant.Manager.ManagerPanelForm.resources
 D:\Мои работы\C# - Project\DemoRestaurant\DemoRestaurant\program\obj\Debug\DemoRestaurant.Manager.AddNewOrderForm.resources
+D:\Мои работы\C# - Project\DemoRestaurant\DemoRestaurant\program\obj\Debug\DemoRestaurant.Admin.AdminPanelForm.resources
+D:\Мои работы\C# - Project\DemoRestaurant\DemoRestaurant\program\obj\Debug\DemoRestaurant.PersonnelPanel.resources

@@ -172,6 +172,12 @@ namespace DemoRestaurant.Manager
                 return;
             }
 
+            if(listBox_order.Items.Count <= 0)
+            {
+                MessageBox.Show("Заполняет поля.");
+                return;
+            }
+
             List<ingr> ings = new List<ingr>();
             using (var conn = new MySqlConnection(Program.SQLBuilder.ConnectionString))
             {
@@ -217,53 +223,6 @@ namespace DemoRestaurant.Manager
 
             #endregion
 
-            int ID_customer = -1;
-            int ID_order = -1;
-            using (var conn = new MySqlConnection(Program.SQLBuilder.ConnectionString))
-            {
-                try { conn.Open(); }
-                catch { MessageBox.Show("MySQL server disconnect"); }
-                using (var query = conn.CreateCommand())
-                {
-                    query.CommandTimeout = 30;
-                    query.CommandText = "SELECT MAX(`id`) FROM `customer`;";
-
-                    using (var reader = query.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            try
-                            {
-                                ID_customer = reader.GetInt32(0) + 1;
-                            }catch
-                            {
-                                ID_customer = 1;
-                            }
-                        }
-                    }
-                }
-                
-                using (var query = conn.CreateCommand())
-                {
-                    query.CommandTimeout = 30;
-                    query.CommandText = "SELECT MAX(`id`) FROM `order`;";
-
-                    using (var reader = query.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            try {
-                                ID_order = reader.GetInt32(0) + 1;
-                            }
-                            catch
-                            {
-                                ID_order = 1;
-                            }
-                        }
-                    }
-                }
-            }
-
             using (var conn = new MySqlConnection(Program.SQLBuilder.ConnectionString))
             {
                 try { conn.Open(); }
@@ -281,21 +240,64 @@ namespace DemoRestaurant.Manager
 
                     query.CommandText = "INSERT INTO `order` (`notes`, `customer_id`) VALUES (@notes, @customer_id);";
                     query.Parameters.AddWithValue("@notes", textBox_notes.Text);
-                    query.Parameters.AddWithValue("@customer_id", ID_customer);
+                    query.Parameters.AddWithValue("@customer_id", GetID("customer"));
                     query.ExecuteNonQuery();
 
-                    query.Parameters.AddWithValue("@order_id", ID_order);
+                    query.Parameters.AddWithValue("@order_id", GetID("order"));
+                    int CookID = GetPersonnelId(ThisUser.Positions.Cook);
                     foreach (Recipe i in _Recipes)
                     {
-                        query.CommandText = $"INSERT INTO `dishes` (`order_id`, `recipe_id`, `personnel-data_id`) VALUES (@order_id, '{i.id}', '{GetPersonnelIdCook().ToString()}');";
+                        query.CommandText = $"INSERT INTO `dishes` (`order_id`, `recipe_id`, `personnel-data_id`) VALUES (@order_id, '{i.id}', '{CookID}');";
                         query.ExecuteNonQuery();
+                        foreach(Ingredient j in i.ingredients)
+                        {
+                            query.CommandText = $"UPDATE `ingredients` SET `count` = `count` - 1 WHERE `id` = '{j.id}';";
+                            query.ExecuteNonQuery();
+                        }
                     }
 
+                    query.CommandText = "INSERT INTO `delivery` (`date_time`, `personnel-data_id`, `order_id`) VALUES (@date_time, @personnel_data_id, @order_id);";
+                    query.Parameters.AddWithValue("@date_time", dateTimePicker_datetime.Value);
+                    query.Parameters.AddWithValue("@personnel_data_id", GetPersonnelId(ThisUser.Positions.Deliveryman));
+                    query.ExecuteNonQuery();
                 }
             }
+
+            MessageBox.Show("Заказ доблен.");
+            this.Close();
         }
 
-        private int GetPersonnelIdCook()
+        private static int GetID(string table)
+        {
+            using (var conn = new MySqlConnection(Program.SQLBuilder.ConnectionString))
+            {
+                try { conn.Open(); }
+                catch { MessageBox.Show("MySQL server disconnect"); }
+                using (var query = conn.CreateCommand())
+                {
+                    query.CommandTimeout = 30;
+                    query.CommandText = $"SELECT MAX(`id`) FROM `{table}`;";
+
+                    using (var reader = query.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            try
+                            {
+                                return reader.GetInt32(0);
+                            }
+                            catch
+                            {
+                                return 1;
+                            }
+                        }
+                    }
+                }
+            }
+            return -1;
+        }
+
+        private int GetPersonnelId(ThisUser.Positions positions)
         {
             List<int> personnelIds = new List<int>();
             using (var conn = new MySqlConnection(Program.SQLBuilder.ConnectionString))
@@ -305,7 +307,7 @@ namespace DemoRestaurant.Manager
                 using (var query = conn.CreateCommand())
                 {
                     query.CommandTimeout = 30;
-                    query.CommandText = $"SELECT `id` FROM `personnel-data` WHERE `positions_id` = '{(int)ThisUser.Positions.Cook}';";
+                    query.CommandText = $"SELECT `id` FROM `personnel-data` WHERE `positions_id` = '{(int)positions}' AND `date_of_dismissal` = '1900-01-01';";
 
                     using (var reader = query.ExecuteReader())
                     {
@@ -318,10 +320,16 @@ namespace DemoRestaurant.Manager
             }
             return personnelIds[new Random().Next(0, personnelIds.Count)];
         }
+        
 
         private void domainUpDown_dishesType_SelectedItemChanged(object sender, EventArgs e)
         {
             LoadAllDishes();
+        }
+
+        private void listBox_allDishes_DoubleClick(object sender, EventArgs e)
+        {
+            button_addDishes_Click(sender, e);
         }
     }
 }
